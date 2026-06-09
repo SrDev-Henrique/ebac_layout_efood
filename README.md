@@ -1,46 +1,66 @@
-# Getting Started with Create React App
+# efood
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Página inicial do efood criada com React, TypeScript, Create React App e styled-components. O projeto renderiza uma home estática com header, lista de 6 restaurantes mockados e footer, usando os assets locais disponíveis em `public/images`.
 
-## Available Scripts
+## Tecnologias
 
-In the project directory, you can run:
+- React 18
+- TypeScript
+- Create React App / react-scripts
+- styled-components
+- Bun como gerenciador de pacotes
 
-### `npm start`
+## Como rodar
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Instale as dependências:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+bun install
+```
 
-### `npm test`
+Inicie o ambiente de desenvolvimento:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+bun run start
+```
 
-### `npm run build`
+Gere o build de produção:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+bun run build
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Estrutura
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```text
+public/
+  images/              # Imagens usadas pela home
+src/
+  @/                   # Ponte para imports com alias @/
+  components/          # Componentes visuais da página
+  data/                # Restaurantes mockados
+  pages/Home/          # Composição da página inicial
+  styles/              # Estilos globais e tokens
+  types/               # Tipos TypeScript compartilhados
+```
 
-### `npm run eject`
+## Arquitetura atual
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- `src/pages/Home` compõe a página com `Header`, `RestaurantList` e `Footer`.
+- `src/data/restaurants.ts` concentra os dados mockados dos restaurantes.
+- `src/types/restaurant.ts` define os tipos usados pelos cards e pela lista.
+- `src/styles/tokens.ts` centraliza cores, espaçamentos, medidas, breakpoints e tipografia.
+- `src/styles/global.ts` aplica o reset básico e o fundo global.
+- `src/@` permite imports no formato `@/components/...`, `@/data/...`, `@/styles/...` e `@/types/...`.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Assets
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+As imagens utilizadas pela interface ficam em `public/images` e são referenciadas por caminho público, como:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```ts
+'/images/sushi.png'
+```
 
-## Learn More
+## Observações
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+O projeto usa uma home estática e não depende de API externa para renderizar a página inicial.
