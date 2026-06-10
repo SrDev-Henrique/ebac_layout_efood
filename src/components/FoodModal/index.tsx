@@ -21,7 +21,9 @@ type Props = {
 const FoodModal = ({ item, onClose }: Props) => (
   <ModalWrapper>
     <ModalBox>
-      <CloseButton onClick={onClose} aria-label="Fechar modal">×</CloseButton>
+      <CloseButton onClick={onClose} aria-label="Fechar modal">
+        ×
+      </CloseButton>
       <ModalImage src={item.foto} alt={item.nome} />
       <ModalContent>
         <FoodName>{item.nome}</FoodName>

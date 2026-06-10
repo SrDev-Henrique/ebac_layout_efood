@@ -24,7 +24,7 @@ const Perfil = () => {
       <HeaderPerfil
         restaurant={restaurant}
         cartCount={cartCount}
-        onCartClick={() => {}}
+        onCartClick={() => undefined}
       />
       <FoodList items={restaurant.cardapio} />
       <Footer />

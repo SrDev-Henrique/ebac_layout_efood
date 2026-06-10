@@ -27,10 +27,7 @@ const FoodList = ({ items }: Props) => {
       </Container>
 
       {selectedItem && (
-        <FoodModal
-          item={selectedItem}
-          onClose={() => setSelectedItem(null)}
-        />
+        <FoodModal item={selectedItem} onClose={() => setSelectedItem(null)} />
       )}
     </>
   )
