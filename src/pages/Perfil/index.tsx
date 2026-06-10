@@ -41,10 +41,7 @@ const Perfil = () => {
       {error ? (
         <Alert message={error} />
       ) : (
-        <FoodList
-          items={restaurant?.cardapio ?? []}
-          isLoading={isLoading}
-        />
+        <FoodList items={restaurant?.cardapio ?? []} isLoading={isLoading} />
       )}
       <Footer />
     </>
