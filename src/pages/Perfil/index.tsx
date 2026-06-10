@@ -9,7 +9,7 @@ import Footer from '@/components/Footer'
 const Perfil = () => {
   const { id } = useParams<{ id: string }>()
   const [restaurant, setRestaurant] = useState<ApiRestaurant | null>(null)
-  const [cartCount, setCartCount] = useState(0)
+  const [cartCount] = useState(0)
 
   useEffect(() => {
     if (id) {
