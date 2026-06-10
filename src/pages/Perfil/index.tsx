@@ -1,48 +1,43 @@
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import type { ApiRestaurant } from '@/types/api'
 import Alert from '@/components/Alert'
-import { getRestaurant } from '@/services/api'
+import { useGetRestaurantQuery } from '@/services/api'
+import { useAppDispatch, useAppSelector } from '@/store/hooks'
+import { open } from '@/store/slices/cart'
 import HeaderPerfil from '@/components/HeaderPerfil'
 import FoodList from '@/components/FoodList'
+import Cart from '@/components/Cart'
 import Footer from '@/components/Footer'
 
 const Perfil = () => {
   const { id } = useParams<{ id: string }>()
-  const [restaurant, setRestaurant] = useState<ApiRestaurant | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [cartCount] = useState(0)
+  const {
+    data: restaurant,
+    isLoading,
+    isError
+  } = useGetRestaurantQuery(id ?? '', { skip: !id })
 
-  useEffect(() => {
-    if (id) {
-      getRestaurant(id)
-        .then((data) => {
-          setRestaurant(data)
-        })
-        .catch((err: Error) => {
-          setError(err.message)
-        })
-        .finally(() => {
-          setIsLoading(false)
-        })
-    }
-  }, [id])
+  const dispatch = useAppDispatch()
+  const items = useAppSelector((state) => state.cart.items)
 
   return (
     <>
       {restaurant && (
         <HeaderPerfil
           restaurant={restaurant}
-          cartCount={cartCount}
-          onCartClick={() => undefined}
+          cartCount={items.length}
+          onCartClick={() => dispatch(open())}
         />
       )}
-      {error ? (
-        <Alert message={error} />
+      {isError ? (
+        <Alert message="Não foi possível carregar o restaurante." />
       ) : (
-        <FoodList items={restaurant?.cardapio ?? []} isLoading={isLoading} />
+        <FoodList
+          items={restaurant?.cardapio ?? []}
+          isLoading={isLoading}
+          restaurantId={restaurant?.id}
+        />
       )}
+      <Cart />
       <Footer />
     </>
   )

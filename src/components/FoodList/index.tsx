@@ -9,11 +9,12 @@ import { Grid } from './styles'
 type Props = {
   items: ApiCardapioItem[]
   isLoading: boolean
+  restaurantId?: number
 }
 
 const SKELETON_COUNT = 6
 
-const FoodList = ({ items, isLoading }: Props) => {
+const FoodList = ({ items, isLoading, restaurantId }: Props) => {
   const [selectedItem, setSelectedItem] = useState<ApiCardapioItem | null>(null)
 
   return (
@@ -34,8 +35,12 @@ const FoodList = ({ items, isLoading }: Props) => {
         </Grid>
       </Container>
 
-      {selectedItem && (
-        <FoodModal item={selectedItem} onClose={() => setSelectedItem(null)} />
+      {selectedItem && restaurantId != null && (
+        <FoodModal
+          item={selectedItem}
+          restaurantId={restaurantId}
+          onClose={() => setSelectedItem(null)}
+        />
       )}
     </>
   )

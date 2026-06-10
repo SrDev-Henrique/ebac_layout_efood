@@ -1,36 +1,19 @@
-import { useEffect, useState } from 'react'
 import Alert from '@/components/Alert'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import RestaurantList from '@/components/RestaurantList'
-import { getRestaurants } from '@/services/api'
-import type { Restaurant } from '@/types/restaurant'
+import { useGetRestaurantsQuery } from '@/services/api'
 
 const Home = () => {
-  const [restaurants, setRestaurants] = useState<Restaurant[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    getRestaurants()
-      .then((data) => {
-        setRestaurants(data)
-      })
-      .catch((err: Error) => {
-        setError(err.message)
-      })
-      .finally(() => {
-        setIsLoading(false)
-      })
-  }, [])
+  const { data: restaurants, isLoading, isError } = useGetRestaurantsQuery()
 
   return (
     <>
       <Header />
-      {error ? (
-        <Alert message={error} />
+      {isError ? (
+        <Alert message="Erro ao carregar os restaurantes." />
       ) : (
-        <RestaurantList restaurants={restaurants} isLoading={isLoading} />
+        <RestaurantList restaurants={restaurants ?? []} isLoading={isLoading} />
       )}
       <Footer />
     </>
