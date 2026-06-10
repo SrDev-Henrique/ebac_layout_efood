@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Tag from '../Tag'
 import type { Restaurant } from '@/types/restaurant'
 import {
@@ -14,7 +15,7 @@ import {
 
 type Props = Restaurant
 
-const RestaurantCard = ({ description, image, title, rating, tags }: Props) => (
+const RestaurantCard = ({ id, description, image, title, rating, tags }: Props) => (
   <Card>
     <CoverImage src={image} alt={title} />
     <Tags>
@@ -30,7 +31,7 @@ const RestaurantCard = ({ description, image, title, rating, tags }: Props) => (
       </Rating>
     </CardHeader>
     <Description>{description}</Description>
-    <StyledButton type="button" aria-label={`Saiba mais sobre ${title}`}>
+    <StyledButton as={Link} to={`/restaurante/${id}`} aria-label={`Saiba mais sobre ${title}`}>
       Saiba mais
     </StyledButton>
   </Card>
