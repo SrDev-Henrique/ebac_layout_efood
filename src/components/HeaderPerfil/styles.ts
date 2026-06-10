@@ -7,19 +7,27 @@ export const TopBar = styled.header`
   background-image: url('/images/fundo.png');
   background-size: cover;
   background-position: center;
+  display: flex;
+  align-items: center;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    height: auto;
+    padding: ${spacing.md} 0;
+  }
+`
+
+export const TopBarContent = styled.div`
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   justify-items: center;
-  padding: 0 ${spacing.lg};
+  width: 100%;
 
   @media (max-width: ${breakpoints.mobile}) {
-    height: auto;
-    padding: ${spacing.md};
-    gap: ${spacing.sm};
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
     text-align: center;
+    gap: ${spacing.sm};
   }
 `
 
