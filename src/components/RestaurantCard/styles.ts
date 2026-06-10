@@ -10,6 +10,7 @@ export const Card = styled.article`
   color: ${colors.pink};
   margin-bottom: ${layout.restaurantCardSpacing};
   position: relative;
+  overflow: hidden;
 `
 
 export const CoverImage = styled.img`
@@ -67,6 +68,7 @@ export const Description = styled.p`
 `
 
 export const StyledButton = styled.button`
+  display: inline-block;
   width: fit-content;
   height: fit-content;
   min-width: 82px;

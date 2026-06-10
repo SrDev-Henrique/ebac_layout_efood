@@ -5,6 +5,7 @@ const API_URL = 'https://api-ebac.vercel.app/api/efood/restaurantes'
 
 export async function getRestaurants(): Promise<Restaurant[]> {
   const response = await fetch(API_URL)
+  if (!response.ok) throw new Error('Erro ao carregar os restaurantes.')
   const data: ApiRestaurant[] = await response.json()
 
   return data.map((r) => ({
@@ -22,5 +23,6 @@ export async function getRestaurants(): Promise<Restaurant[]> {
 
 export async function getRestaurant(id: string): Promise<ApiRestaurant> {
   const response = await fetch(`${API_URL}/${id}`)
+  if (!response.ok) throw new Error('Não foi possível carregar o restaurante.')
   return response.json()
 }
