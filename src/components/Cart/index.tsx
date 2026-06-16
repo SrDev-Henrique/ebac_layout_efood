@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
-import { close, remove } from '@/store/slices/cart'
+import { close, openCheckout, remove } from '@/store/slices/cart'
 import { formatPrice } from '@/utils/formatters'
 import {
   Overlay,
@@ -49,7 +49,9 @@ const Cart = () => {
           <span>Valor total</span>
           <span>{formatPrice(totalPrice)}</span>
         </Total>
-        <CheckoutButton type="button">Continuar com a entrega</CheckoutButton>
+        <CheckoutButton type="button" onClick={() => dispatch(openCheckout())}>
+          Continuar com a entrega
+        </CheckoutButton>
       </SideBar>
     </>
   )

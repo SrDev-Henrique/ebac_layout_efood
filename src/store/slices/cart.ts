@@ -11,12 +11,14 @@ type AddPayload = {
 type CartState = {
   items: CartItem[]
   isOpen: boolean
+  isCheckoutOpen: boolean
   restaurantId: number | null
 }
 
 const initialState: CartState = {
   items: [],
   isOpen: false,
+  isCheckoutOpen: false,
   restaurantId: null
 }
 
@@ -40,9 +42,22 @@ const cartSlice = createSlice({
     },
     close: (state) => {
       state.isOpen = false
+    },
+    openCheckout: (state) => {
+      state.isOpen = false
+      state.isCheckoutOpen = true
+    },
+    closeCheckout: (state) => {
+      state.isCheckoutOpen = false
+    },
+    clear: (state) => {
+      state.items = []
+      state.restaurantId = null
+      state.isCheckoutOpen = false
     }
   }
 })
 
-export const { add, remove, open, close } = cartSlice.actions
+export const { add, remove, open, close, openCheckout, closeCheckout, clear } =
+  cartSlice.actions
 export default cartSlice.reducer

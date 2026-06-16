@@ -6,6 +6,7 @@ import { open } from '@/store/slices/cart'
 import HeaderPerfil from '@/components/HeaderPerfil'
 import FoodList from '@/components/FoodList'
 import Cart from '@/components/Cart'
+import Checkout from '@/components/Checkout'
 import Footer from '@/components/Footer'
 
 const Perfil = () => {
@@ -38,6 +39,7 @@ const Perfil = () => {
         />
       )}
       <Cart />
+      <Checkout />
       <Footer />
     </>
   )
